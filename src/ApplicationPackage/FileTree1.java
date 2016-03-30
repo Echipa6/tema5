@@ -12,15 +12,15 @@ public class FileTree1
   extends JFrame 
 {
   public static final ImageIcon ICON_COMPUTER = 
-    new ImageIcon("C:\\Users\\L\\Desktop\\icons\\pc.png");
+    new ImageIcon("pc.png");
   public static final ImageIcon ICON_DISK = 
-    new ImageIcon("C:\\Users\\L\\Desktop\\icons\\Generic-Drive-icon.png");
+    new ImageIcon("Generic-Drive-icon.png");
   public static final ImageIcon ICON_FOLDER = 
-    new ImageIcon("C:\\Users\\L\\Desktop\\icons\\folder.png");
+    new ImageIcon("folder.png");
   public static final ImageIcon ICON_EXPANDEDFOLDER = 
-    new ImageIcon("C:\\Users\\L\\Desktop\\icons\\expendedFolder.png");
+    new ImageIcon("expendedFolder.png");
   public static final ImageIcon ICON_AUDIO = 
-		  new ImageIcon("C:\\Users\\L\\Desktop\\icons\\Music.png");
+		  new ImageIcon("Music.png");
 
   protected JTree  m_tree;
   protected DefaultTreeModel m_model;
