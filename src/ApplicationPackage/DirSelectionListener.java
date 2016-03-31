@@ -1,5 +1,7 @@
 package ApplicationPackage;
 
+import java.io.File;
+
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -21,6 +23,8 @@ class DirSelectionListener implements TreeSelectionListener
 			tree.myTextPath.setText(fnode.getFile().getAbsolutePath());
 			if(fnode.getFile().isDirectory())
 			{
+				MyTableAudio tableCreator=new MyTableAudio();
+				tree.detailedInformation.setTable(tableCreator.getTableForDir(fnode.getFile().getAbsolutePath()));
 				tree.detailedInformation.displayTable();
 			}
 			else

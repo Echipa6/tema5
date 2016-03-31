@@ -1,7 +1,6 @@
 package ApplicationPackage;
 import java.awt.BorderLayout;
 import java.io.File;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -10,6 +9,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -31,8 +32,15 @@ public class TreeController extends JFrame
 	protected CustomizedJPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
 	private Serealizer serealiser=new Serealizer(this);
+	private JTable table;
+	private JScrollPane scrollPanelTable;
 	//  
 
+
+	public void setTable(JTable table) {
+		this.table = table;
+		scrollPanelTable.getViewport().add(this.table);
+	}
 
 	public Serealizer getSerealiser() {
 		return serealiser;
@@ -42,7 +50,7 @@ public class TreeController extends JFrame
 	{
 		//super("Visual Audio Manager");
 		setSize(600, 400);
-
+		scrollPanelTable= new JScrollPane();
 		myTreeModel = new DefaultTreeModel(createRootNode());
 		myTree = new CustomizedJTree(myTreeModel,this);
 		myPopupMenu = new CustomizedJPopupMenu(this);
@@ -71,7 +79,13 @@ public class TreeController extends JFrame
 
 		WindowCloseListener wndCloser = new WindowCloseListener(this);
 		addWindowListener(wndCloser);
-
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		setVisible(true);
 	}
