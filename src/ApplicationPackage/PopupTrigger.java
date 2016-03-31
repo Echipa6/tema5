@@ -17,26 +17,20 @@ class PopupTrigger extends MouseAdapter
 	{
 		this.tree=tree;
 	}
-  public void mouseReleased(MouseEvent e)
-  {
-    if (e.isPopupTrigger())
-    {
-      int x = e.getX();
-      int y = e.getY();
-      TreePath path = tree.myTree.getPathForLocation(x, y);
-      
-     
-      if (path != null && path.getPathCount()>1)
-      {
-    	  String absolutePath;
-          absolutePath=this.tree.getFileNode(this.tree.getTreeNode(path)).getFile().getPath();
-         if(!(new File(absolutePath)).isDirectory())
-         {
-        	 tree.myPopupMenu.show(tree.myTree, x, y);
-        	 System.out.println("Right click on tralala:"+absolutePath);
-         }
-        tree.setMyClickedPath(path);
-      }
-    }
-  }
+	public void mouseReleased(MouseEvent e)
+	{
+		if (e.isPopupTrigger()){
+
+			int x = e.getX();
+			int y = e.getY();
+			TreePath path = tree.myTree.getPathForLocation(x, y);
+
+			if (path != null && path.getPathCount()>1){
+
+				if(!(tree.getFileNode(this.tree.getTreeNode(path)).getFile().isDirectory()))
+					tree.myPopupMenu.show(tree.myTree, x, y);
+				tree.setMyClickedPath(path);
+			}
+		}
+	}
 }

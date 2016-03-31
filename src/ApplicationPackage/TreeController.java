@@ -20,21 +20,46 @@ public class TreeController extends JFrame
 	public static final ImageIcon ICON_EXPANDEDFOLDER = new ImageIcon("expendedFolder.png");
 	public static final ImageIcon ICON_AUDIO = new ImageIcon("Music.png");
 
-	protected JTree  myTree;
+	protected CustomizedJTree  myTree;
 	protected DefaultTreeModel myTreeModel;
 	protected JTextField myTextPath;
 	//New
-	protected JPopupMenu myPopupMenu;
+	protected CustomizedJPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
-	protected PlayAction myPlayAction;
-	protected AddFavAction myAddFavAction;
 	
 	//  
+	
+	
 	public TreeController()
 	{
 		super("Visual Audio Manager");
 		setSize(400, 300);
 
+		myTreeModel = new DefaultTreeModel(createRootNode());
+		myTree = new CustomizedJTree(myTreeModel,this);
+		myPopupMenu = new CustomizedJPopupMenu(this);
+
+		myTree.add(myPopupMenu);
+		myTree.addMouseListener(new PopupTrigger(this));
+		
+		
+		JScrollPane s = new JScrollPane();
+		s.getViewport().add(myTree);
+		getContentPane().add(s, BorderLayout.CENTER);
+		
+		myTextPath = new JTextField();
+		myTextPath.setEditable(false);
+		getContentPane().add(myTextPath, BorderLayout.NORTH);
+		
+		
+		WindowCloseListener wndCloser = new WindowCloseListener();
+		addWindowListener(wndCloser);
+		
+		setVisible(true);
+	}
+	
+	public DefaultMutableTreeNode createRootNode()
+	{
 		DefaultMutableTreeNode myComputerRoot = new DefaultMutableTreeNode(new IconData(ICON_COMPUTER, null, "MyComputer"));
 
 		DefaultMutableTreeNode node;
@@ -46,54 +71,8 @@ public class TreeController extends JFrame
 			node.add( new DefaultMutableTreeNode(new Boolean(true)));
 		}
 
-		myTreeModel = new DefaultTreeModel(myComputerRoot);
-		myTree = new JTree(myTreeModel);
-
-
-		TreeCellRenderer renderer = new IconCellRenderer();
-		myTree.setCellRenderer(renderer);
-
-		myTree.addTreeExpansionListener(new DirExpansionListener(this));
-
-		myTree.addTreeSelectionListener(new DirSelectionListener(this));
-
-		myTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION); 
-		myTree.setShowsRootHandles(false);
-		myTree.setEditable(false);
-
-		JScrollPane s = new JScrollPane();
-		s.getViewport().add(myTree);
-		getContentPane().add(s, BorderLayout.CENTER);
-
-		myTextPath = new JTextField();
-		myTextPath.setEditable(false);
-		getContentPane().add(myTextPath, BorderLayout.NORTH);
-		//new
-		myPopupMenu = new JPopupMenu();
-
-
-		myPlayAction= new PlayAction("Play",this);
-
-		myPopupMenu.add(myPlayAction);
+		return myComputerRoot;
 		
-		myPopupMenu.addSeparator();
-		
-		myAddFavAction=new AddFavAction("Add to Fav",this);
-
-		myPopupMenu.add(myAddFavAction);
-		myTree.add(myPopupMenu);
-		myTree.addMouseListener(new PopupTrigger(this));
-		//
-		WindowListener wndCloser = new WindowAdapter()
-		{
-			public void windowClosing(WindowEvent e) 
-			{
-				System.exit(0);
-			}
-		};
-		addWindowListener(wndCloser);
-
-		setVisible(true);
 	}
 
 	public DefaultMutableTreeNode getTreeNode(TreePath path)
