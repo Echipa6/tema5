@@ -23,13 +23,14 @@ public class TreeController extends JFrame
 	protected CustomizedJTree  myTree;
 	protected DefaultTreeModel myTreeModel;
 	protected JTextField myTextPath;
+	public DefaultMutableTreeNode fav;
 	//New
 	protected CustomizedJPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
-	
+
 	//  
-	
-	
+
+
 	public TreeController()
 	{
 		super("Visual Audio Manager");
@@ -41,23 +42,23 @@ public class TreeController extends JFrame
 
 		myTree.add(myPopupMenu);
 		myTree.addMouseListener(new PopupTrigger(this));
-		
-		
+
+
 		JScrollPane s = new JScrollPane();
 		s.getViewport().add(myTree);
 		getContentPane().add(s, BorderLayout.CENTER);
-		
+
 		myTextPath = new JTextField();
 		myTextPath.setEditable(false);
 		getContentPane().add(myTextPath, BorderLayout.NORTH);
-		
-		
+
+
 		WindowCloseListener wndCloser = new WindowCloseListener();
 		addWindowListener(wndCloser);
-		
+
 		setVisible(true);
 	}
-	
+
 	public DefaultMutableTreeNode createRootNode()
 	{
 		DefaultMutableTreeNode myComputerRoot = new DefaultMutableTreeNode(new IconData(ICON_COMPUTER, null, "MyComputer"));
@@ -69,10 +70,18 @@ public class TreeController extends JFrame
 			node = new DefaultMutableTreeNode(new IconData(ICON_DISK, null, new FileNode(roots[k])));
 			myComputerRoot.add(node);
 			node.add( new DefaultMutableTreeNode(new Boolean(true)));
+
+
 		}
 
+		fav=new DefaultMutableTreeNode(new IconData(ICON_FOLDER, ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
+		//fav=deserealizeFav();
+
+		myComputerRoot.add(fav);
+		fav.add( new DefaultMutableTreeNode(new Boolean(true)));
+
 		return myComputerRoot;
-		
+
 	}
 
 	public DefaultMutableTreeNode getTreeNode(TreePath path)
@@ -101,6 +110,13 @@ public class TreeController extends JFrame
 		this.myClickedPath = myClickedPath;
 	}
 
+	public DefaultTreeModel getMyTreeModel() {
+		return myTreeModel;
+	}
+
+	public void setMyTreeModel(DefaultTreeModel myTreeModel) {
+		this.myTreeModel = myTreeModel;
+	}
 }
 
 
