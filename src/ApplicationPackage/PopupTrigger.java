@@ -12,8 +12,8 @@ import javax.swing.tree.TreePath;
 
 class PopupTrigger extends MouseAdapter
 {
-	FileTree1 tree;
-	PopupTrigger(FileTree1 tree)
+	TreeController tree;
+	PopupTrigger(TreeController tree)
 	{
 		this.tree=tree;
 	}
@@ -35,7 +35,7 @@ class PopupTrigger extends MouseAdapter
         	 tree.myPopupMenu.show(tree.myTree, x, y);
         	 System.out.println("Right click on tralala:"+absolutePath);
          }
-        tree.myClickedPath = path;
+        tree.setMyClickedPath(path);
       }
     }
   }

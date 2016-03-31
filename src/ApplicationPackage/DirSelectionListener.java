@@ -7,8 +7,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 class DirSelectionListener 
 implements TreeSelectionListener 
 {
-	FileTree1 tree;
-	DirSelectionListener(FileTree1 tree)
+	TreeController tree;
+	DirSelectionListener(TreeController tree)
 	{
 		this.tree=tree;
 	}

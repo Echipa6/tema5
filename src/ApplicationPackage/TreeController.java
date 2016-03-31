@@ -6,9 +6,13 @@ import java.io.*;
 
 import javax.swing.*;
 import javax.swing.tree.*;
+
+import Action.AddFavAction;
+import Action.PlayAction;
+
 import javax.swing.event.*;
 
-public class FileTree1 extends JFrame 
+public class TreeController extends JFrame 
 {
 	public static final ImageIcon ICON_COMPUTER = new ImageIcon("pc.png");
 	public static final ImageIcon ICON_DISK = new ImageIcon("Generic-Drive-icon.png");
@@ -21,10 +25,12 @@ public class FileTree1 extends JFrame
 	protected JTextField myTextPath;
 	//New
 	protected JPopupMenu myPopupMenu;
-	protected Action myAction;
-	protected TreePath myClickedPath;
+	private TreePath myClickedPath;
+	protected PlayAction myPlayAction;
+	protected AddFavAction myAddFavAction;
+	
 	//  
-	public FileTree1()
+	public TreeController()
 	{
 		super("Visual Audio Manager");
 		setSize(400, 300);
@@ -66,34 +72,15 @@ public class FileTree1 extends JFrame
 		myPopupMenu = new JPopupMenu();
 
 
-		Action a1 = new AbstractAction("Play") 
-		{ 
-			public void actionPerformed(ActionEvent e)
-			{
+		myPlayAction= new PlayAction("Play",this);
 
-				myTree.repaint();
-
-				String path;
-				path=getFileNode(getTreeNode(myClickedPath)).getFile().getPath();
-
-				(new Play()).execute(path);
-			}
-		};
-		myPopupMenu.add(a1);
+		myPopupMenu.add(myPlayAction);
 		
 		myPopupMenu.addSeparator();
+		
+		myAddFavAction=new AddFavAction("Add to Fav",this);
 
-		Action a2 = new AbstractAction("Rename") 
-		{ 
-			public void actionPerformed(ActionEvent e)
-			{
-				myTree.repaint();
-				JOptionPane.showMessageDialog(FileTree1.this, 
-						"Rename option is not implemented",
-						"Info", JOptionPane.INFORMATION_MESSAGE);
-			}
-		};
-		myPopupMenu.add(a2);
+		myPopupMenu.add(myAddFavAction);
 		myTree.add(myPopupMenu);
 		myTree.addMouseListener(new PopupTrigger(this));
 		//
@@ -109,12 +96,12 @@ public class FileTree1 extends JFrame
 		setVisible(true);
 	}
 
-	DefaultMutableTreeNode getTreeNode(TreePath path)
+	public DefaultMutableTreeNode getTreeNode(TreePath path)
 	{
 		return (DefaultMutableTreeNode)(path.getLastPathComponent());
 	}
 
-	FileNode getFileNode(DefaultMutableTreeNode node)
+	public FileNode getFileNode(DefaultMutableTreeNode node)
 	{
 		if (node == null)
 			return null;
@@ -127,11 +114,14 @@ public class FileTree1 extends JFrame
 			return null;
 	}
 
-
-	public static void main(String argv[]) 
-	{
-		new FileTree1();
+	public TreePath getMyClickedPath() {
+		return myClickedPath;
 	}
+
+	public void setMyClickedPath(TreePath myClickedPath) {
+		this.myClickedPath = myClickedPath;
+	}
+
 }
 
 

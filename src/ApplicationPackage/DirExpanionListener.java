@@ -7,8 +7,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 class DirExpansionListener implements TreeExpansionListener
 {
-	FileTree1 tree;
-	DirExpansionListener(FileTree1 tree)
+	TreeController tree;
+	DirExpansionListener(TreeController tree)
 	{
 		this.tree=tree;
 	}

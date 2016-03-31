@@ -13,9 +13,9 @@ public class PopupAcctions {
 	
 	
 
-	FileTree1 tree;
+	TreeController tree;
 	
-	PopupAcctions(FileTree1 tree)
+	PopupAcctions(TreeController tree)
 	{
 		this.tree=tree;
 		
@@ -31,12 +31,12 @@ public class PopupAcctions {
 	    { 
 	      public void actionPerformed(ActionEvent e)
 	      {
-	        if (tree.myClickedPath==null)
+	        if (tree.getMyClickedPath()==null)
 	          return;
-	        if (tree.myTree.isExpanded(tree.myClickedPath))
-	          tree.myTree.collapsePath(tree.myClickedPath);
+	        if (tree.myTree.isExpanded(tree.getMyClickedPath()))
+	          tree.myTree.collapsePath(tree.getMyClickedPath());
 	        else
-	          tree.myTree.expandPath(tree.myClickedPath);
+	          tree.myTree.expandPath(tree.getMyClickedPath());
 	      }
 	    };
 	    
