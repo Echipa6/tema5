@@ -27,9 +27,13 @@ public class TreeController extends JFrame
 	//New
 	protected CustomizedJPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
-
+	private Serealizer serealiser=new Serealizer(this);
 	//  
 
+
+	public Serealizer getSerealiser() {
+		return serealiser;
+	}
 
 	public TreeController()
 	{
@@ -53,7 +57,7 @@ public class TreeController extends JFrame
 		getContentPane().add(myTextPath, BorderLayout.NORTH);
 
 
-		WindowCloseListener wndCloser = new WindowCloseListener();
+		WindowCloseListener wndCloser = new WindowCloseListener(this);
 		addWindowListener(wndCloser);
 
 		setVisible(true);
@@ -74,11 +78,11 @@ public class TreeController extends JFrame
 
 		}
 
-		fav=new DefaultMutableTreeNode(new IconData(ICON_FOLDER, ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
-		//fav=deserealizeFav();
+		//fav=new DefaultMutableTreeNode(new IconData(ICON_FOLDER, ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
+		fav=serealiser.deserealizeFav();
 
 		myComputerRoot.add(fav);
-		fav.add( new DefaultMutableTreeNode(new Boolean(true)));
+		//fav.add( new DefaultMutableTreeNode(new Boolean(true)));
 
 		return myComputerRoot;
 
