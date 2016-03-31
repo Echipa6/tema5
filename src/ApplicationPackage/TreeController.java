@@ -21,14 +21,15 @@ public class TreeController extends JFrame
 	public static final ImageIcon ICON_AUDIO = new ImageIcon("Music.png");
 
 	protected JTree  myTree;
-	protected DefaultTreeModel myTreeModel;
+	private DefaultTreeModel myTreeModel;
 	protected JTextField myTextPath;
+	public DefaultMutableTreeNode fav;
 	//New
 	protected JPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
 	protected PlayAction myPlayAction;
 	protected AddFavAction myAddFavAction;
-	
+
 	//  
 	public TreeController()
 	{
@@ -45,9 +46,13 @@ public class TreeController extends JFrame
 			myComputerRoot.add(node);
 			node.add( new DefaultMutableTreeNode(new Boolean(true)));
 		}
+		
+		fav=new DefaultMutableTreeNode(new IconData(ICON_FOLDER, ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
+		myComputerRoot.add(fav);
+		fav.add( new DefaultMutableTreeNode(new Boolean(true)));
 
-		myTreeModel = new DefaultTreeModel(myComputerRoot);
-		myTree = new JTree(myTreeModel);
+		setMyTreeModel(new DefaultTreeModel(myComputerRoot));
+		myTree = new JTree(getMyTreeModel());
 
 
 		TreeCellRenderer renderer = new IconCellRenderer();
@@ -120,6 +125,14 @@ public class TreeController extends JFrame
 
 	public void setMyClickedPath(TreePath myClickedPath) {
 		this.myClickedPath = myClickedPath;
+	}
+
+	public DefaultTreeModel getMyTreeModel() {
+		return myTreeModel;
+	}
+
+	public void setMyTreeModel(DefaultTreeModel myTreeModel) {
+		this.myTreeModel = myTreeModel;
 	}
 
 }
