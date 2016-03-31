@@ -28,7 +28,7 @@ class DirExpansionListener implements TreeExpansionListener
               {
                 public void run() 
                 {
-                   tree.m_model.reload(node);
+                   tree.myTreeModel.reload(node);
                 }
               };
               SwingUtilities.invokeLater(runnable);

@@ -31,12 +31,12 @@ public class PopupAcctions {
 	    { 
 	      public void actionPerformed(ActionEvent e)
 	      {
-	        if (tree.m_clickedPath==null)
+	        if (tree.myClickedPath==null)
 	          return;
-	        if (tree.m_tree.isExpanded(tree.m_clickedPath))
-	          tree.m_tree.collapsePath(tree.m_clickedPath);
+	        if (tree.myTree.isExpanded(tree.myClickedPath))
+	          tree.myTree.collapsePath(tree.myClickedPath);
 	        else
-	          tree.m_tree.expandPath(tree.m_clickedPath);
+	          tree.myTree.expandPath(tree.myClickedPath);
 	      }
 	    };
 	    
@@ -48,7 +48,7 @@ public class PopupAcctions {
 	    { 
 	      public void actionPerformed(ActionEvent e)
 	      {
-	                                tree.m_tree.repaint();
+	                                tree.myTree.repaint();
 	        JOptionPane.showMessageDialog(tree, 
 	          "Delete option is not implemented",
 	          "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -64,7 +64,7 @@ public class PopupAcctions {
 		    { 
 		      public void actionPerformed(ActionEvent e)
 		      {
-		                                tree.m_tree.repaint();
+		                                tree.myTree.repaint();
 		        JOptionPane.showMessageDialog(tree, 
 		          "Rename option is not implemented",
 		          "Info", JOptionPane.INFORMATION_MESSAGE);

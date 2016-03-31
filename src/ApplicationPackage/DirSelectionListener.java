@@ -19,9 +19,9 @@ public void valueChanged(TreeSelectionEvent event)
     event.getPath());
   FileNode fnode = tree.getFileNode(node);
   if (fnode != null)
-    tree.m_display.setText(fnode.getFile().
+    tree.myTextPath.setText(fnode.getFile().
       getAbsolutePath());
   else
-    tree.m_display.setText("");
+    tree.myTextPath.setText("");
 }
 }
