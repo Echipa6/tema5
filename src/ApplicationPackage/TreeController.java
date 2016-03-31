@@ -37,6 +37,7 @@ public class TreeController extends JFrame
 
 	public TreeController()
 	{
+		
 		super("Visual Audio Manager");
 		setSize(400, 300);
 
@@ -59,7 +60,13 @@ public class TreeController extends JFrame
 
 		WindowCloseListener wndCloser = new WindowCloseListener(this);
 		addWindowListener(wndCloser);
-
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setVisible(true);
 	}
 
