@@ -2,7 +2,7 @@ package ApplicationPackage;
 
 import javax.swing.Icon;
 
-class IconData
+public class IconData
 {
 	protected Icon   m_icon;
 	protected Icon   m_expandedIcon;
