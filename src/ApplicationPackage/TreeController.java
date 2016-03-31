@@ -1,18 +1,20 @@
 package ApplicationPackage;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.io.File;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
-import javax.swing.*;
-import javax.swing.tree.*;
-
-import Action.AddFavAction;
-import Action.PlayAction;
-
-import javax.swing.event.*;
-
-public class TreeController extends JFrame 
+public class TreeController extends JFrame
 {
 	public static final ImageIcon ICON_COMPUTER = new ImageIcon("pc.png");
 	public static final ImageIcon ICON_DISK = new ImageIcon("Generic-Drive-icon.png");
@@ -28,8 +30,15 @@ public class TreeController extends JFrame
 	protected CustomizedJPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
 	private Serealizer serealiser=new Serealizer(this);
+	private JTable table;
+	private JScrollPane scrollPanelTable;
 	//  
 
+
+	public void setTable(JTable table) {
+		this.table = table;
+		scrollPanelTable.getViewport().add(this.table);
+	}
 
 	public Serealizer getSerealiser() {
 		return serealiser;
@@ -37,26 +46,34 @@ public class TreeController extends JFrame
 
 	public TreeController()
 	{
-		
-		super("Visual Audio Manager");
-		setSize(400, 300);
-
+		//super("Visual Audio Manager");
+		setSize(600, 400);
+		scrollPanelTable= new JScrollPane();
 		myTreeModel = new DefaultTreeModel(createRootNode());
 		myTree = new CustomizedJTree(myTreeModel,this);
 		myPopupMenu = new CustomizedJPopupMenu(this);
 
 		myTree.add(myPopupMenu);
 		myTree.addMouseListener(new PopupTrigger(this));
-
-
-		JScrollPane s = new JScrollPane();
-		s.getViewport().add(myTree);
-		getContentPane().add(s, BorderLayout.CENTER);
-
+		
 		myTextPath = new JTextField();
 		myTextPath.setEditable(false);
 		getContentPane().add(myTextPath, BorderLayout.NORTH);
 
+		JScrollPane scrollPanelTree = new JScrollPane();
+		scrollPanelTree.getViewport().add(myTree);
+		
+		 table = new JTable();
+		JScrollPane scrollPanelTable = new JScrollPane();
+		scrollPanelTable.getViewport().add(table);
+	    
+	    
+		
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+	    splitPane.setLeftComponent(scrollPanelTree);
+	    splitPane.setRightComponent(scrollPanelTable);
+	    getContentPane().add(splitPane,BorderLayout.CENTER);
+	    
 
 		WindowCloseListener wndCloser = new WindowCloseListener(this);
 		addWindowListener(wndCloser);
@@ -67,6 +84,7 @@ public class TreeController extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		setVisible(true);
 	}
 
