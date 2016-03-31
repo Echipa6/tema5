@@ -17,8 +17,20 @@ class DirSelectionListener implements TreeSelectionListener
 		DefaultMutableTreeNode node = tree.getTreeNode(event.getPath());
 		FileNode fnode = tree.getFileNode(node);
 		if (fnode != null)
+		{
 			tree.myTextPath.setText(fnode.getFile().getAbsolutePath());
+			if(fnode.getFile().isDirectory())
+			{
+				tree.detailedInformation.displayTable();
+			}
+			else
+			{
+				tree.detailedInformation.displayTextArea();
+			}
+		}
 		else
 			tree.myTextPath.setText("");
+		
+		
 	}
 }

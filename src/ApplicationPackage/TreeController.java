@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -22,6 +23,7 @@ public class TreeController extends JFrame
 	public static final ImageIcon ICON_AUDIO = new ImageIcon("Music.png");
 
 	protected CustomizedJTree  myTree;
+	public DisplayInformation detailedInformation;
 	protected DefaultTreeModel myTreeModel;
 	protected JTextField myTextPath;
 	public DefaultMutableTreeNode fav;
@@ -55,15 +57,15 @@ public class TreeController extends JFrame
 		JScrollPane scrollPanelTree = new JScrollPane();
 		scrollPanelTree.getViewport().add(myTree);
 		
-		JTable table = new JTable();
-		JScrollPane scrollPanelTable = new JScrollPane();
-		scrollPanelTable.getViewport().add(table);
+	
+		
 	    
 	    
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	    splitPane.setLeftComponent(scrollPanelTree);
-	    splitPane.setRightComponent(scrollPanelTable);
+	    detailedInformation= new DisplayInformation();
+	    splitPane.setRightComponent(detailedInformation);
 	    getContentPane().add(splitPane,BorderLayout.CENTER);
 	    
 
