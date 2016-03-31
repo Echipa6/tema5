@@ -52,8 +52,6 @@ public class TreeController extends JFrame
 		myTextPath.setEditable(false);
 		getContentPane().add(myTextPath, BorderLayout.NORTH);
 
-
-<<<<<<< HEAD
 		JScrollPane scrollPanelTree = new JScrollPane();
 		scrollPanelTree.getViewport().add(myTree);
 		
@@ -68,10 +66,10 @@ public class TreeController extends JFrame
 	    splitPane.setRightComponent(scrollPanelTable);
 	    getContentPane().add(splitPane,BorderLayout.CENTER);
 	    
-=======
+
 		WindowCloseListener wndCloser = new WindowCloseListener(this);
 		addWindowListener(wndCloser);
->>>>>>> e1ae274d117aa47eb94d7c0ae3085f7207cc4e68
+
 
 		setVisible(true);
 	}
