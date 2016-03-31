@@ -1,19 +1,22 @@
 package ApplicationPackage;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.*;
-
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.tree.*;
 
 import Action.AddFavAction;
 import Action.PlayAction;
-
+import ApplicationPackage.Serealizer;
 import javax.swing.event.*;
 
 public class TreeController extends JFrame 
 {
+	private static final String FILENAME = "favoriteSongs.xml";
 	public static final ImageIcon ICON_COMPUTER = new ImageIcon("pc.png");
 	public static final ImageIcon ICON_DISK = new ImageIcon("Generic-Drive-icon.png");
 	public static final ImageIcon ICON_FOLDER = new ImageIcon("folder.png");
@@ -48,9 +51,12 @@ public class TreeController extends JFrame
 		}
 		
 		fav=new DefaultMutableTreeNode(new IconData(ICON_FOLDER, ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
+		//fav=deserealizeFav();
+		
 		myComputerRoot.add(fav);
 		fav.add( new DefaultMutableTreeNode(new Boolean(true)));
-
+		
+		
 		setMyTreeModel(new DefaultTreeModel(myComputerRoot));
 		myTree = new JTree(getMyTreeModel());
 
@@ -93,6 +99,7 @@ public class TreeController extends JFrame
 		{
 			public void windowClosing(WindowEvent e) 
 			{
+				
 				System.exit(0);
 			}
 		};
