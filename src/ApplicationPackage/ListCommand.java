@@ -41,7 +41,7 @@ public class ListCommand  {
 		
 		dir=Paths.get(parameters);
 	
-		
+		foundAudioFiles=new ArrayList<Song>();
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			
 			for (Path file: stream) {

@@ -28,14 +28,14 @@ import org.xml.sax.helpers.DefaultHandler;
 
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class InfoCommand.
  */
 public class InfoCommand {
 	
 	/** The instance. */
-	private static InfoCommand instance= null;
+	private static InfoCommand instance= new InfoCommand();;
 	
 	/** The execution type. */
 	private String executionType="ok";
@@ -64,9 +64,6 @@ public class InfoCommand {
 	 * @return single instance of InfoCommand
 	 */
 	public static InfoCommand getInstance(){
-		if(instance == null) {
-	         instance = new InfoCommand();
-	      }
 	      return instance;
 	} 
 	

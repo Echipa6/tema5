@@ -29,11 +29,8 @@ public class DisplayInformation extends JScrollPane{
 	}
 	public void displayTable()
 	{
-		this.repaint();
-		getViewport().removeAll();
-		this.repaint();
-		getViewport().setView(table);
-		this.repaint();
+	
+		getViewport().add(table);
 		
 		
 	}
