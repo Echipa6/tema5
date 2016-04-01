@@ -1,7 +1,5 @@
 package ApplicationPackage;
 
-import java.io.File;
-
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -29,12 +27,17 @@ class DirSelectionListener implements TreeSelectionListener
 			}
 			else
 			{
-				tree.detailedInformation.displayTextArea();
+				if(	fnode.getFile().isFile())
+				{
+					InfoCommand info= InfoCommand.getInstance();
+							info.execute(fnode.getFile().getAbsolutePath());
+							tree.detailedInformation.displayTextArea(info.toString());
+				}
 			}
 		}
 		else
 			tree.myTextPath.setText("");
-		
-		
+
+
 	}
 }

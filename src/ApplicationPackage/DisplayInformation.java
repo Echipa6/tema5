@@ -24,7 +24,7 @@ public class DisplayInformation extends JScrollPane{
 	public JTextArea textArea;
 	public DisplayInformation()
 	{
-		
+		textArea=new JTextArea();
 		
 	}
 	public void displayTable()
@@ -34,8 +34,9 @@ public class DisplayInformation extends JScrollPane{
 		
 		
 	}
-	public void displayTextArea()
+	public void displayTextArea(String info)
 	{
+		textArea.setText(info);
 		getViewport().add(textArea);
 	}
 
