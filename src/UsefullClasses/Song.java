@@ -1,8 +1,8 @@
-package ApplicationPackage;
+package UsefullClasses;
 
-import ApplicationPackage.InfoCommand;
+import UsefullClasses.InfoCommand;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Song.
  */
@@ -186,5 +186,13 @@ public class Song  {
 	 */
 	public void setAlbum(String album) {
 		this.album = album;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 }

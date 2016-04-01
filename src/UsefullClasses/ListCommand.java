@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package UsefullClasses;
 
 import java.io.IOException;
 import java.nio.file.DirectoryIteratorException;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ListCommand the command are meant to list all audio files from current dir.
  */

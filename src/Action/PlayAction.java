@@ -7,14 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.AbstractAction;
-import javax.swing.tree.TreePath;
 
-import ApplicationPackage.TreeController;
+import Controller.Controller;
 
 public class PlayAction extends AbstractAction{
 
-	
-	protected TreeController myFileTree;
+	private static final long serialVersionUID = 1L;
+	protected Controller myFileTree;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -45,7 +44,7 @@ public class PlayAction extends AbstractAction{
 		}
 	}
 
-		public PlayAction(String name, TreeController currentTree)
+		public PlayAction(String name, Controller currentTree)
 		{
 			super(name);
 			myFileTree=currentTree;

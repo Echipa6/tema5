@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package Controller;
 
 import javax.swing.Icon;
 

@@ -1,14 +1,17 @@
-package ApplicationPackage;
+package Listener;
 
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-class DirExpansionListener implements TreeExpansionListener
+import Controller.Controller;
+import UsefullClasses.FileNode;
+
+public class DirExpansionListener implements TreeExpansionListener
 {
-	TreeController tree;
-	DirExpansionListener(TreeController tree)
+	Controller tree;
+	public DirExpansionListener(Controller tree)
 	{
 		this.tree=tree;
 	}

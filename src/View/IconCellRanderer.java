@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package View;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -11,8 +11,12 @@ import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeCellRenderer;
 
-class IconCellRenderer extends JLabel implements TreeCellRenderer
+import Controller.IconData;
+
+public class IconCellRanderer extends JLabel implements TreeCellRenderer
 {
+	
+	private static final long serialVersionUID = 1L;
 	protected Color m_textSelectionColor;
 	protected Color m_textNonSelectionColor;
 	protected Color m_bkSelectionColor;
@@ -21,7 +25,7 @@ class IconCellRenderer extends JLabel implements TreeCellRenderer
 
 	protected boolean m_selected;
 
-	public IconCellRenderer()
+	public IconCellRanderer()
 	{
 		super();
 		m_textSelectionColor = UIManager.getColor("Tree.selectionForeground");

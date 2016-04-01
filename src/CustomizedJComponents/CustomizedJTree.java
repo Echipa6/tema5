@@ -1,16 +1,25 @@
-package ApplicationPackage;
+package CustomizedJComponents;
 
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
+import Controller.Controller;
+import Listener.DirExpansionListener;
+import Listener.DirSelectionListener;
+import View.IconCellRanderer;
+
+
+
 public class CustomizedJTree extends JTree {
 	
-	public CustomizedJTree(DefaultTreeModel treeModel,TreeController treeController)
+	private static final long serialVersionUID = 1L;
+
+	public CustomizedJTree(DefaultTreeModel treeModel,Controller treeController)
 	{
 		super(treeModel);
-		TreeCellRenderer renderer = new IconCellRenderer();
+		TreeCellRenderer renderer = new IconCellRanderer();
 		setCellRenderer(renderer);
 
 		addTreeExpansionListener(new DirExpansionListener(treeController));

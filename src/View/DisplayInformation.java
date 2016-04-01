@@ -1,12 +1,12 @@
-package ApplicationPackage;
-
-import java.util.Vector;
+package View;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 public class DisplayInformation extends JScrollPane{
+
+	private static final long serialVersionUID = 1L;
 	public JTable table;
 	public JTable getTable() {
 		return table;
