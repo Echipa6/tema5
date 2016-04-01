@@ -1,11 +1,11 @@
 package Listener;
-
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import Controller.Controller;
 import UsefullClasses.FileNode;
+import UsefullClasses.InfoCommand;
 import UsefullClasses.MyTableAudio;
 
 public class DirSelectionListener implements TreeSelectionListener 
@@ -25,20 +25,18 @@ public class DirSelectionListener implements TreeSelectionListener
 			tree.getMyTextPath().setText(fnode.getFile().getAbsolutePath());
 			if(fnode.getFile().isDirectory())
 			{
-				Thread runner = new Thread() 
-				{
-					public void run() 
-					{
-						MyTableAudio tableCreator=new MyTableAudio();
-						tree.detailedInformation.setTable(tableCreator.getTableForDir(fnode.getFile().getAbsolutePath()));
-						tree.detailedInformation.displayTable();
-					}
-				};
-				runner.start();
+				MyTableAudio tableCreator=new MyTableAudio();
+				tree.detailedInformation.setTable(tableCreator.getTableForDir(fnode.getFile().getAbsolutePath()));
+				tree.detailedInformation.displayTable();
 			}
 			else
 			{
-				tree.detailedInformation.displayTextArea();
+				if(	fnode.getFile().isFile())
+				{
+					InfoCommand info= InfoCommand.getInstance();
+							info.execute(fnode.getFile().getAbsolutePath());
+							tree.detailedInformation.displayTextArea(info.toString());
+				}
 			}
 		}
 		else
