@@ -4,10 +4,14 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import Controller.Controller;
+import UsefullClasses.FileNode;
+import UsefullClasses.InfoCommand;
+
 class DirSelectionListener implements TreeSelectionListener 
 {
-	TreeController tree;
-	DirSelectionListener(TreeController tree)
+	Controller tree;
+	DirSelectionListener(Controller tree)
 	{
 		this.tree=tree;
 	}
@@ -18,7 +22,7 @@ class DirSelectionListener implements TreeSelectionListener
 		FileNode fnode = tree.getFileNode(node);
 		if (fnode != null)
 		{
-			tree.myTextPath.setText(fnode.getFile().getAbsolutePath());
+			tree.getMyTextPath().setText(fnode.getFile().getAbsolutePath());
 			if(fnode.getFile().isDirectory())
 			{
 				MyTableAudio tableCreator=new MyTableAudio();
@@ -36,7 +40,7 @@ class DirSelectionListener implements TreeSelectionListener
 			}
 		}
 		else
-			tree.myTextPath.setText("");
+			tree.getMyTextPath().setText("");
 
 
 	}

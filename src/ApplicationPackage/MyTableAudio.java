@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import UsefullClasses.ListCommand;
+import UsefullClasses.Song;
+
 public class MyTableAudio {
   
 	private JTable table;
