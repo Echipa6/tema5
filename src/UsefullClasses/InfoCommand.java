@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package UsefullClasses;
 
 import java.io.File;
 import java.io.FileInputStream;

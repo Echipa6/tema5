@@ -5,13 +5,15 @@ import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.tree.DefaultMutableTreeNode;
-import ApplicationPackage.IconData;
-import ApplicationPackage.FileNode;
-import ApplicationPackage.TreeController;
+
+import Controller.Controller;
+import Controller.IconData;
+import UsefullClasses.FileNode;
 
 public class AddFavAction extends AbstractAction{
 
-	protected TreeController myFileTree;
+	private static final long serialVersionUID = 1L;
+	protected Controller myFileTree;
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		boolean arleadyAdded=false;
@@ -29,7 +31,7 @@ public class AddFavAction extends AbstractAction{
 		if(!arleadyAdded){
 		
 
-		IconData idata = new IconData(myFileTree.ICON_AUDIO,myFileTree.ICON_AUDIO, new FileNode(new File(path)));
+		IconData idata = new IconData(Controller.ICON_AUDIO,Controller.ICON_AUDIO, new FileNode(new File(path)));
 		DefaultMutableTreeNode node = new  DefaultMutableTreeNode(idata);
 		if(!myFileTree.getFileNode(myFileTree.getTreeNode((myFileTree.getMyClickedPath().getParentPath()))).getFile().toString().equals("Fav"))
 			fav.add(node);
@@ -37,7 +39,7 @@ public class AddFavAction extends AbstractAction{
 		myFileTree.getMyTreeModel().reload(fav);
 
 	}
-	public AddFavAction(String name, TreeController currentTree)
+	public AddFavAction(String name, Controller currentTree)
 	{
 		super(name);
 		myFileTree=currentTree;

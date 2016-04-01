@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package Controller;
 import java.awt.BorderLayout;
 import java.io.File;
 
@@ -6,8 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -15,60 +13,60 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
-public class TreeController extends JFrame
+import CustomizedJComponents.CustomizedJPopupMenu;
+import CustomizedJComponents.CustomizedJTree;
+import Listener.PopupTrigger;
+import Listener.WindowCloseListener;
+import UsefullClasses.FileNode;
+import UsefullClasses.Serealizer;
+import View.DisplayInformation;
+
+public class Controller extends JFrame
 {
+
+	private static final long serialVersionUID = 1L;
 	public static final ImageIcon ICON_COMPUTER = new ImageIcon("pc.png");
 	public static final ImageIcon ICON_DISK = new ImageIcon("Generic-Drive-icon.png");
 	public static final ImageIcon ICON_FOLDER = new ImageIcon("folder.png");
 	public static final ImageIcon ICON_EXPANDEDFOLDER = new ImageIcon("expendedFolder.png");
 	public static final ImageIcon ICON_AUDIO = new ImageIcon("Music.png");
 
-	protected CustomizedJTree  myTree;
+	private CustomizedJTree  myTree;
 	public DisplayInformation detailedInformation;
 	protected DefaultTreeModel myTreeModel;
-	protected JTextField myTextPath;
+	private JTextField myTextPath;
 	public DefaultMutableTreeNode fav;
-	//New
-	protected CustomizedJPopupMenu myPopupMenu;
+	
+	private CustomizedJPopupMenu myPopupMenu;
 	private TreePath myClickedPath;
 	private Serealizer serealiser=new Serealizer(this);
-	private JTable table;
 	private JScrollPane scrollPanelTable;
-	//  
 
 
-	public void setTable(JTable table) {
-		this.table = table;
-		scrollPanelTable.getViewport().add(this.table);
-	}
 
 	public Serealizer getSerealiser() {
 		return serealiser;
 	}
 
-	public TreeController()
+	public Controller()
 	{
-		//super("Visual Audio Manager");
+		super("Visual Audio Manager");
 		setSize(600, 400);
-		scrollPanelTable= new JScrollPane();
+		setScrollPanelTable(new JScrollPane());
 		myTreeModel = new DefaultTreeModel(createRootNode());
-		myTree = new CustomizedJTree(myTreeModel,this);
-		myPopupMenu = new CustomizedJPopupMenu(this);
+		setMyTree(new CustomizedJTree(myTreeModel,this));
+		setMyPopupMenu(new CustomizedJPopupMenu(this));
 
-		myTree.add(myPopupMenu);
-		myTree.addMouseListener(new PopupTrigger(this));
+		getMyTree().add(getMyPopupMenu());
+		getMyTree().addMouseListener(new PopupTrigger(this));
 		
-		myTextPath = new JTextField();
-		myTextPath.setEditable(false);
-		getContentPane().add(myTextPath, BorderLayout.NORTH);
+		setMyTextPath(new JTextField());
+		getMyTextPath().setEditable(false);
+		getContentPane().add(getMyTextPath(), BorderLayout.NORTH);
 
 		JScrollPane scrollPanelTree = new JScrollPane();
-		scrollPanelTree.getViewport().add(myTree);
+		scrollPanelTree.getViewport().add(getMyTree());
 		
-	
-		
-	    
-	    
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	    splitPane.setLeftComponent(scrollPanelTree);
@@ -83,7 +81,7 @@ public class TreeController extends JFrame
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -104,12 +102,8 @@ public class TreeController extends JFrame
 
 
 		}
-
-		//fav=new DefaultMutableTreeNode(new IconData(ICON_FOLDER, ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
 		fav=serealiser.deserealizeFav();
-
 		myComputerRoot.add(fav);
-		//fav.add( new DefaultMutableTreeNode(new Boolean(true)));
 
 		return myComputerRoot;
 
@@ -147,6 +141,38 @@ public class TreeController extends JFrame
 
 	public void setMyTreeModel(DefaultTreeModel myTreeModel) {
 		this.myTreeModel = myTreeModel;
+	}
+
+	public JScrollPane getScrollPanelTable() {
+		return scrollPanelTable;
+	}
+
+	public void setScrollPanelTable(JScrollPane scrollPanelTable) {
+		this.scrollPanelTable = scrollPanelTable;
+	}
+
+	public JTextField getMyTextPath() {
+		return myTextPath;
+	}
+
+	public void setMyTextPath(JTextField myTextPath) {
+		this.myTextPath = myTextPath;
+	}
+
+	public CustomizedJTree getMyTree() {
+		return myTree;
+	}
+
+	public void setMyTree(CustomizedJTree myTree) {
+		this.myTree = myTree;
+	}
+
+	public CustomizedJPopupMenu getMyPopupMenu() {
+		return myPopupMenu;
+	}
+
+	public void setMyPopupMenu(CustomizedJPopupMenu myPopupMenu) {
+		this.myPopupMenu = myPopupMenu;
 	}
 }
 

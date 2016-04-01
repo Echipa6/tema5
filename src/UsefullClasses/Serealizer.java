@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package UsefullClasses;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -13,9 +13,12 @@ import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import Controller.Controller;
+import Controller.IconData;
+
 public class Serealizer {
 
-	protected TreeController myFileTree;
+	protected Controller myFileTree;
 	private static final String FILENAME = "favoriteSongs.xml";
 	public void serealizeFav(){
 		
@@ -36,10 +39,11 @@ public class Serealizer {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public DefaultMutableTreeNode deserealizeFav()
 	{
 		DefaultMutableTreeNode fav;
-		fav=new DefaultMutableTreeNode(new IconData(myFileTree.ICON_FOLDER, myFileTree.ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
+		fav=new DefaultMutableTreeNode(new IconData(Controller.ICON_FOLDER, Controller.ICON_EXPANDEDFOLDER, new FileNode(new File("Fav"))));
 		
 		List<String> musicFiles=new ArrayList<String>();
 		try{
@@ -55,8 +59,8 @@ public class Serealizer {
 		
 		for(int i=0;i<musicFiles.size();i++)
 		{
-			IconData idata = new IconData(TreeController.ICON_AUDIO, 
-  				  TreeController.ICON_AUDIO, new FileNode(new File(musicFiles.get(i))));
+			IconData idata = new IconData(Controller.ICON_AUDIO, 
+  				  Controller.ICON_AUDIO, new FileNode(new File(musicFiles.get(i))));
       	  DefaultMutableTreeNode node = new 
       			  DefaultMutableTreeNode(idata);
       	  fav.add(node);
@@ -65,7 +69,7 @@ public class Serealizer {
 		return fav;
 	}
 	
-	public Serealizer(TreeController myFileTree )
+	public Serealizer(Controller myFileTree )
 	{
 		this.myFileTree=myFileTree;
 	}

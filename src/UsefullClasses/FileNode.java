@@ -1,4 +1,4 @@
-package ApplicationPackage;
+package UsefullClasses;
 
 import java.io.File;
 import java.util.Vector;
@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
+
+import Controller.Controller;
+import Controller.IconData;
 
 public class FileNode
 {
@@ -53,7 +56,7 @@ public class FileNode
 			FileNode nd = (FileNode)v.elementAt(i);
 			if(nd.getFile().isDirectory())
 			{
-				IconData idata = new IconData(TreeController.ICON_FOLDER, TreeController.ICON_EXPANDEDFOLDER, nd);
+				IconData idata = new IconData(Controller.ICON_FOLDER, Controller.ICON_EXPANDEDFOLDER, nd);
 				DefaultMutableTreeNode node = new DefaultMutableTreeNode(idata);
 				parent.add(node);
 
@@ -63,7 +66,7 @@ public class FileNode
 			else{
 				if( Pattern.matches("(.)+\\.wav",nd.getFile().getName()) || Pattern.matches("(.)+\\.mp3",nd.getFile().getName()) || Pattern.matches("(.)+\\.flac",nd.getFile().getName()))
 				{
-					IconData idata = new IconData(TreeController.ICON_AUDIO, TreeController.ICON_AUDIO, nd);
+					IconData idata = new IconData(Controller.ICON_AUDIO, Controller.ICON_AUDIO, nd);
 					DefaultMutableTreeNode node = new DefaultMutableTreeNode(idata);
 					parent.add(node);
 				}
