@@ -1,14 +1,8 @@
 package Action;
 
 import java.awt.event.ActionEvent;
-import java.io.File;
-
 import javax.swing.AbstractAction;
-import javax.swing.tree.DefaultMutableTreeNode;
-
 import Controller.Controller;
-import Controller.IconData;
-import UsefullClasses.FileNode;
 import UsefullClasses.InfoCommand;
 import UsefullClasses.PlayOnYoutube;
 

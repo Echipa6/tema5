@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -52,7 +53,7 @@ public class Controller extends JFrame
 	{
 		super("Visual Audio Manager");
 		setSize(600, 400);
-		setScrollPanelTable(new JScrollPane());
+		
 		myTreeModel = new DefaultTreeModel(createRootNode());
 		setMyTree(new CustomizedJTree(myTreeModel,this));
 		setMyPopupMenu(new CustomizedJPopupMenu(this));
@@ -77,8 +78,10 @@ public class Controller extends JFrame
 
 		WindowCloseListener wndCloser = new WindowCloseListener(this);
 		addWindowListener(wndCloser);
+		
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(this);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) {
 			

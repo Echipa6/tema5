@@ -14,8 +14,15 @@ import com.google.gson.Gson;
  
 public class imagineDownload2 {
  
+	private URL url;
+	public URL getUrl() {
+		return url;
+	}
+	public void setUrl(URL url) {
+		this.url = url;
+	}
 	public imagineDownload2(String artist, String title) throws IOException {
- 
+	
 		String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=";
 		String query = "youtube "+artist+" "+title;
 		String charset = "UTF-8";
@@ -24,15 +31,16 @@ public class imagineDownload2 {
 		Reader reader = new InputStreamReader(url.openStream(), charset);
 		GoogleResults results = new Gson().fromJson(reader, GoogleResults.class);
  
-		int total = results.getResponseData().getResults().size();
-		System.out.println("total: "+total);
+//		int total = results.getResponseData().getResults().size();
+//		System.out.println("total: "+total);
  
 
 		String url23=results.getResponseData().getResults().get(0).getUrl();
 		url23=url23.replaceAll("%3F", "?");
 		url23=url23.replaceAll("%3D", "=");
 		//System.out.println(url23);
-		openWebpage(new URL(url23));
+		this.url=new URL(url23);
+		
 	}
     public static void openWebpage(URI uri) {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -45,7 +53,7 @@ public class imagineDownload2 {
         }
     }
 
-    public static void openWebpage(URL url) {
+    public void openWebpage(URL url) {
         try {
             openWebpage(url.toURI());
         } catch (URISyntaxException e) {

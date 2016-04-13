@@ -3,6 +3,7 @@ package CustomizedJComponents;
 import javax.swing.JPopupMenu;
 
 import Action.AddFavAction;
+import Action.DownloadAction;
 import Action.PlayAction;
 import Action.SearchAction;
 import Controller.Controller;
@@ -13,6 +14,7 @@ public class CustomizedJPopupMenu extends JPopupMenu{
 	PlayAction myPlayAction;
 	AddFavAction myAddFavAction;
 	SearchAction mySearchAction;
+	DownloadAction myDownloadAction;
 	public CustomizedJPopupMenu(Controller treeController)
 	{
 		super();
@@ -24,6 +26,9 @@ public class CustomizedJPopupMenu extends JPopupMenu{
 		addSeparator();
 		mySearchAction=new SearchAction("Search",treeController);
 		add(mySearchAction);
+		addSeparator();
+		myDownloadAction=new DownloadAction("Download",treeController);
+		add(myDownloadAction);
 		
 	}
 }
